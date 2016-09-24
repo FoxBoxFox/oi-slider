@@ -89,7 +89,6 @@ function slider_boxes() {
  * @param $post
  */
 function slider_fields_box_func( $post ) {
-	$slider = array();
 	$slider = json_decode( $post->post_content, true );
 
 	?>
@@ -129,10 +128,9 @@ function slider_fields_box_func( $post ) {
 	?>
 	<script>
 		var counter = 1;
-		if (jQuery('.img_url').last().attr('id')) {
+		if ( jQuery('.img_url').last().attr('id') ) {
 			counter = jQuery('.img_url').last().attr('id').split('_');
 		}
-
 
 		if (Number(counter[3])) {
 			counter = Number(counter[3]) + 1;
@@ -193,7 +191,7 @@ function save_slides( $post_id ) {
 	$my_post['post_content'] = wp_json_encode( $_POST['slider'], JSON_UNESCAPED_UNICODE );
 	wp_update_post( $my_post );
 	add_action( 'save_post', 'save_slides' );
-
+	return true;
 }
 
 
